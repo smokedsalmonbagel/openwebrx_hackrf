@@ -3,7 +3,7 @@ FROM debian:jessie
 MAINTAINER admin@tyconpowered.com
 
 RUN apt-get update && \
-apt-get install -y netcat wget libusb-1.0-0-dev pkg-config ca-certificates git-core cmake build-essential --no-install-recommend$
+apt-get install -y netcat wget libusb-1.0-0-dev pkg-config ca-certificates git-core cmake build-essential --no-install-recommends && \
 apt-get clean && \
 rm -rf /var/lib/apt/lists/*
 
@@ -39,7 +39,9 @@ rm -rf /var/lib/apt/lists/*
 
 WORKDIR /tmp
 
+#ENV commit_id 1080e4ad237ab37e7d95129ff6aae73fa118f7c5
 ENV commit_id 17b8c7b3c00c2a94f832b18ea677cdd44253c2ce
+
 
 RUN git clone https://github.com/simonyiszk/csdr.git && \
 cd csdr && \
@@ -51,6 +53,7 @@ rm -rf /tmp/csdr
 
 WORKDIR /opt
 
+#ENV commit_id 1d19b07833e63761a507bcb73e9c56f081c751a4
 ENV commit_id 4e30fd57c03596b3705df432306ba2b40a740084
 ENV branch master
 
